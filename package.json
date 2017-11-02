@@ -1,0 +1,24 @@
+{
+	"name": "buddystream",
+	"version": "1.0.0",
+	"description": "an app to watch things with friends online",
+	"main": "index.js",
+	"scripts": {
+		"start": "browser-sync start --server --files '*.css, *.html, *.js'",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thejonroberts/BuddyStream.git"
+	},
+	"author": "Jon Roberts",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/thejonroberts/BuddyStream/issues"
+	},
+	"homepage": "https://github.com/thejonroberts/BuddyStream#readme",
+	"dependencies": {},
+	"devDependencies": {
+		"browser-sync": "^2.18.13"
+	}
+}
