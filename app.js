@@ -35,12 +35,12 @@ function paintToCanvas() {
 		// (src, xstart, ystart(topleft), xlength, ylength)
 		ctx.drawImage(video, 0, Math.floor(height * 2), width, height);
 		// take pixels out - need to either take whole canvas, or just video portion, and place in same place with putImageData below
-		let pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		let pixels = ctx.getImageData(0, Math.floor(height * 2), width, height);
 		// add effects - greenscreen first, then apply effect
 		pixels = greenScreen(pixels);
 		pixels = silhouetteEffect(pixels);
-		// put altered image back on canvas
-		ctx.putImageData(pixels, 0, 0);
+		// put altered image back on canvas - has to be same coordinates from getImageData!! otherwise tiling occurs
+		ctx.putImageData(pixels, 0, Math.floor(height * 2));
 	}, 20);
 }
 
