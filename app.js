@@ -38,7 +38,7 @@ function paintToCanvas() {
 		let pixels = ctx.getImageData(0, Math.floor(height * 2), width, height);
 		// add effects - greenscreen first, then apply effect
 		pixels = greenScreen(pixels);
-		pixels = silhouetteEffect(pixels);
+		// pixels = silhouetteEffect(pixels);
 		// put altered image back on canvas - has to be same coordinates from getImageData!! otherwise tiling occurs
 		ctx.putImageData(pixels, 0, Math.floor(height * 2));
 	}, 20);
