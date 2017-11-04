@@ -11,6 +11,10 @@ body {
 	height: 0;
 }
 
+video {
+	width: 40%;
+}
+
 /* #streamContainer iframe {
 	position: absolute;
 	top: 0;

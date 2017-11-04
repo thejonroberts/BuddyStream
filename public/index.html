@@ -25,21 +25,20 @@
       Open WebSocket connection
     </button>
 
-    <!-- <h2>rtc?</h2>
-  <video id="remoteVideo" autoplay></video>
-  <video id="localVideo" autoplay muted></video>
-  <input id="videoCallButton" type="button" disabled value="Video Call" />
-  <input id="endCallButton" type="button" disabled value="End Call" /> -->
+    <!-- <div id="streamContainer">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/tKYk0eFbtVg" frameborder="0" allowfullscreen></iframe>
+    <canvas class="canvas"></canvas>
+    </div> -->
+
+    <video class="player" id="localVideo" autoplay muted></video>
+    <!-- <input type="button" id="start" onclick="start(true)" value="Start Video"></input> -->
+    <input id="videoCallButton" type="button" onclick="start(true)" value="Video Call" />
+    <input id="endCallButton" type="button" disabled value="End Call" />
+    <video class="player" id="remoteVideo" autoplay></video>
+
 
     <pre id="messages" style="height: 400px; overflow: scroll"></pre>
 
-    <!-- <div id="streamContainer">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/tKYk0eFbtVg" frameborder="0" allowfullscreen></iframe>
-      <canvas class="canvas"></canvas>
-    </div> -->
-
-    <video class="player" id="local" autoplay></video>
-    <video class="player" autoplay></video>
   </div>
 
 
