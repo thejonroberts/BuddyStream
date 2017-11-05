@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
   <link href="style.css" rel="stylesheet">
+
+  <!-- TODO - stop top-loading this script -->
+  <script src="app.js"></script>
 </head>
 
 <body class="container-fluid">
@@ -31,11 +34,12 @@
     </div> -->
 
     <video class="player" id="localVideo" autoplay muted></video>
+    <video class="player" id="remoteVideo" autoplay></video>
+
+    <!-- TODO - make a listener for this button (rather than top-loading script) -->
     <!-- <input type="button" id="start" onclick="start(true)" value="Start Video"></input> -->
     <input id="videoCallButton" type="button" onclick="start(true)" value="Video Call" />
     <input id="endCallButton" type="button" disabled value="End Call" />
-    <video class="player" id="remoteVideo" autoplay></video>
-
 
     <pre id="messages" style="height: 400px; overflow: scroll"></pre>
 
@@ -45,7 +49,9 @@
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/popper.js/popper.min.js"></script>
   <script src="lib/bootstrap/bootstrap.min.js"></script>
-  <script src="app.js"></script>
+  <script type="text/javascript">
+    pageReady();
+  </script>
 </body>
 
 </html>
