@@ -5,7 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon server.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "mocha --watch --recursive -R spec",
+		"teardown": "sequelize db:migrate:undo:all",
+		"build": "sequelize db:migrate",
+		"seed": "sequelize db:seed:all",
+		"dbrb": "npm run teardown && npm run build && npm run seed",
+		"docs": "jsdoc ./controllers -c conf.json"
 	},
 	"repository": {
 		"type": "git",
@@ -24,7 +29,19 @@
 		"express-session": "^1.15.6",
 		"jquery": "^3.2.1",
 		"popper.js": "^1.12.6",
-		"uuid": "^3.1.0"
+		"uuid": "^3.1.0",
+		"bcrypt-nodejs": "0.0.3",
+		"body-parser": "^1.18.2",
+		"express-flash": "0.0.2",
+		"express-validator": "^4.2.1",
+		"jsdoc": "^3.5.5",
+		"method-override": "^2.3.10",
+		"passport": "^0.4.0",
+		"passport-local": "^1.0.0",
+		"pg": "^7.3.0",
+		"pg-hstore": "^2.3.2",
+		"pug": "^2.0.0-rc.4",
+		"sequelize": "^4.13.5"
 	},
 	"devDependencies": {
 		"browser-sync": "^2.18.13"

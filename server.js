@@ -7,6 +7,14 @@ const session = require('express-session');
 const app = express();
 const https = require('https');
 const WebSocket = require('ws');
+const methodOverride = require('method-override');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const flash = require('express-flash');
+const expressValidator = require('express-validator');
+
+// WEBSOCKET SERVER SETUP
+// ---------------------------
 require('dotenv').config();
 const PORT = 8443;
 const HTTPS_PORT = process.env.HTTPS_PORT || PORT;
@@ -22,10 +30,6 @@ const sessionParser = session({
 	secret: '$eCuRiTy',
 	resave: false
 });
-
-// Serve static files from the 'public' folder.
-app.use(express.static('public'));
-app.use(sessionParser);
 
 // TODO - use this to login / authenticate user (sessionParser v token v other?)
 // app.post('/login', (req, res) => {
@@ -79,6 +83,48 @@ wss.broadcast = function(data) {
 		}
 	});
 };
+
+// EXPRESS SETUP
+// Serve static files from the 'public' folder.
+app.use(express.static('public'));
+app.use(sessionParser);
+app.set('models', require('./models'));
+app.set('view engine', 'pug');
+// app.locals.globalWow = 'Something we need globally?';
+
+// Begin middleware stack
+app.use(
+	methodOverride(function(req, res) {
+		if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+			let method = req.body._method;
+			return method;
+		}
+	})
+);
+
+//execute passport strategies file
+// require('./config/passport-strat.js');
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
+// This custom middleware adds the logged-in user's info to the locals variable,
+// so we can access it in the Pug templates
+// app.use((req, res, next) => {
+// 	res.locals.session = req.session;
+// 	// console.log('res.locals.session', res.locals.session);
+// 	next();
+// });
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(flash());
+
+// validation - must be after bodyParser as it uses bodyParser to access parameters
+app.use(expressValidator());
+
+// TODO Add a 404 error handler - pipe all server errors to from the routing middleware
+
+let routes = require('./routes/');
+// note that this needs to be after the above stuff
+app.use(routes);
 
 // Start the express server.
 server.listen(HTTPS_PORT, () => {
