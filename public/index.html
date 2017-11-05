@@ -7,9 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
   <link href="style.css" rel="stylesheet">
-
-  <!-- TODO - stop top-loading this script -->
-  <script src="app.js"></script>
 </head>
 
 <body class="container-fluid">
@@ -17,20 +14,9 @@
   <div id="main">
     <h2>Buddy Stream Test</h2>
 
-    <h1>Choose an action.</h1>
-    <button id="login" type="button" title="Simulate login">
-      Simulate login
-    </button>
-    <button id="logout" type="button" title="Simulate logout">
-      Simulate logout
-    </button>
-    <button id="wsButton" type="button" title="Open WebSocket connection">
-      Open WebSocket connection
-    </button>
-
     <!-- <div id="streamContainer">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tKYk0eFbtVg" frameborder="0" allowfullscreen></iframe>
-    <canvas class="canvas"></canvas>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/tKYk0eFbtVg" frameborder="0" allowfullscreen></iframe>
+      <canvas class="canvas"></canvas>
     </div> -->
 
     <video class="player" id="localVideo" autoplay muted></video>
@@ -44,14 +30,22 @@
     <pre id="messages" style="height: 400px; overflow: scroll"></pre>
 
   </div>
-
+  <!-- from ws npm module example https://github.com/websockets/ws/tree/master/examples/express-session-parse -->
+  <!-- <h1>Choose an action.</h1>
+    <button id="login" type="button" title="Simulate login">
+      Simulate login
+    </button>
+    <button id="logout" type="button" title="Simulate logout">
+      Simulate logout
+    </button>
+    <button id="wsButton" type="button" title="Open WebSocket connection">
+      Open WebSocket connection
+    </button> -->
 
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/popper.js/popper.min.js"></script>
   <script src="lib/bootstrap/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    pageReady();
-  </script>
+  <script src="app.js"></script>
 </body>
 
 </html>

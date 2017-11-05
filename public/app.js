@@ -1,47 +1,4 @@
-/*  FROM WS npm module example: global fetch, WebSocket, location */
-// const messages = document.querySelector('#messages');
-// const wsButton = document.querySelector('#wsButton');
-// const logout = document.querySelector('#logout');
-// const login = document.querySelector('#login');
-
-// const showMessage = message => {
-// 	messages.textContent += `\n${message}`;
-// 	messages.scrollTop = messages.scrollHeight;
-// };
-
-// const handleResponse = response => {
-// 	return response.ok
-// 		? response.json().then(data => JSON.stringify(data, null, 2))
-// 		: Promise.reject(new Error('Unexpected response'));
-// };
-
-// login.onclick = () => {
-// 	fetch('/login', { method: 'POST', credentials: 'same-origin' })
-// 		.then(handleResponse)
-// 		.then(showMessage)
-// 		.catch(err => showMessage(err.message));
-// };
-
-// logout.onclick = () => {
-// 	fetch('/logout', { method: 'DELETE', credentials: 'same-origin' })
-// 		.then(handleResponse)
-// 		.then(showMessage)
-// 		.catch(err => showMessage(err.message));
-// };
-
-// let ws;
-
-// wsButton.onclick = () => {
-// 	if (ws) {
-// 		ws.onerror = ws.onopen = ws.onclose = null;
-// 		ws.close();
-// 	}
-
-// 	ws = new WebSocket(`ws://${location.host}`);
-// 	ws.onerror = () => showMessage('WebSocket error');
-// 	ws.onopen = () => showMessage('WebSocket connection established');
-// 	ws.onclose = () => showMessage('WebSocket connection closed');
-// };
+let PORT = 8443;
 
 var localVideo;
 var remoteVideo;
@@ -55,13 +12,24 @@ var peerConnectionConfig = {
 	]
 };
 
-function pageReady() {
+$(document).ready(() => {
 	uuid = uuid();
 
 	localVideo = document.getElementById('localVideo');
 	remoteVideo = document.getElementById('remoteVideo');
 
-	let PORT = 8443;
+	// FROM WS npm module example:
+	// wsButton.onclick = () => {
+	// 	if (ws) {
+	// 		ws.onerror = ws.onopen = ws.onclose = null;
+	// 		ws.close();
+	// 	}
+
+	// 	ws = new WebSocket(`ws://${location.host}`);
+	// };
+	// 	ws.onerror = () => showMessage('WebSocket error');
+	// 	ws.onopen = () => showMessage('WebSocket connection established');
+	// 	ws.onclose = () => showMessage('WebSocket connection closed');
 	serverConnection = new WebSocket(`wss://${window.location.hostname}:${PORT}`);
 	serverConnection.onmessage = gotMessageFromServer;
 
@@ -78,7 +46,7 @@ function pageReady() {
 	} else {
 		alert('Your browser does not support getUserMedia API');
 	}
-}
+});
 
 function getUserMediaSuccess(stream) {
 	localStream = stream;
@@ -179,3 +147,34 @@ function uuid() {
 		s4()
 	);
 }
+
+/*  FROM WS npm module example: global fetch, WebSocket, location */
+// const messages = document.querySelector('#messages');
+// const wsButton = document.querySelector('#wsButton');
+// const logout = document.querySelector('#logout');
+// const login = document.querySelector('#login');
+
+// const showMessage = message => {
+// 	messages.textContent += `\n${message}`;
+// 	messages.scrollTop = messages.scrollHeight;
+// };
+
+// const handleResponse = response => {
+// 	return response.ok
+// 		? response.json().then(data => JSON.stringify(data, null, 2))
+// 		: Promise.reject(new Error('Unexpected response'));
+// };
+
+// login.onclick = () => {
+// 	fetch('/login', { method: 'POST', credentials: 'same-origin' })
+// 		.then(handleResponse)
+// 		.then(showMessage)
+// 		.catch(err => showMessage(err.message));
+// };
+
+// logout.onclick = () => {
+// 	fetch('/logout', { method: 'DELETE', credentials: 'same-origin' })
+// 		.then(handleResponse)
+// 		.then(showMessage)
+// 		.catch(err => showMessage(err.message));
+// };
