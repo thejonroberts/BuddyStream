@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
 		username: DataTypes.STRING,
 		password: DataTypes.STRING,
 		pictureUrl: DataTypes.STRING,
-		lastLoginDate: DataTypes.DATEONLY
+		lastLoginDate: DataTypes.DATEONLY,
+		city: DataTypes.STRING,
+		state: DataTypes.STRING,
+		country: DataTypes.STRING
 	});
 
 	User.associate = function(models) {

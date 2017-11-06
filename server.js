@@ -126,7 +126,7 @@ let routes = require('./routes/');
 // note that this needs to be after the above stuff
 app.use(routes);
 
-// Start the express server.
+// Start the express app via https server.
 server.listen(HTTPS_PORT, () => {
 	console.log(
 		`Server running. Visit https://localhost:${HTTPS_PORT} (note the HTTPS; there is no HTTP -> HTTPS redirect!)`
