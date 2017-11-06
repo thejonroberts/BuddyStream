@@ -10,6 +10,7 @@
 		"build": "sequelize db:migrate",
 		"seed": "sequelize db:seed:all",
 		"dbrb": "npm run teardown && npm run build && npm run seed",
+		"faker": "node ./data/faker/buildDB.js",
 		"docs": "jsdoc ./controllers -c conf.json"
 	},
 	"repository": {
@@ -44,6 +45,7 @@
 		"sequelize": "^4.13.5"
 	},
 	"devDependencies": {
-		"browser-sync": "^2.18.13"
+		"browser-sync": "^2.18.13",
+		"faker": "^4.1.0"
 	}
 }

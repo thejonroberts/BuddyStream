@@ -1,0 +1,9 @@
+{
+	"amounts": {
+		"numUsers": 10,
+		"numBuddies": 15,
+		"numSessions": 15,
+		"numSources": 1,
+		"numStreams": 1
+	}
+}
