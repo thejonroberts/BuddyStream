@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	User.associate = function(models) {
-		User.belongToMany(models.user, {
+		User.belongsToMany(models.User, {
 			through: 'Buddies',
 			as: 'UserOneId'
 		});
-		User.belongToMany(models.user, {
+		User.belongsToMany(models.User, {
 			through: 'Buddies',
 			as: 'UserTwoId'
 		});
