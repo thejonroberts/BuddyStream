@@ -4,6 +4,8 @@ var localVideo;
 var remoteVideo;
 var peerConnection;
 var uuid;
+var serverConnection;
+var localStream;
 
 var peerConnectionConfig = {
 	iceServers: [
@@ -30,9 +32,7 @@ $(document).ready(() => {
 	// 	ws.onerror = () => showMessage('WebSocket error');
 	// 	ws.onopen = () => showMessage('WebSocket connection established');
 	// 	ws.onclose = () => showMessage('WebSocket connection closed');
-	let serverConnection = new WebSocket(
-		`wss://${window.location.hostname}:${PORT}`
-	);
+	serverConnection = new WebSocket(`wss://${window.location.hostname}:${PORT}`);
 	serverConnection.onmessage = gotMessageFromServer;
 
 	var constraints = {

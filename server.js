@@ -123,12 +123,13 @@ app.use(expressValidator());
 // TODO Add a 404 error handler - pipe all server errors to from the routing middleware
 
 let routes = require('./routes/');
-// note that this needs to be after the above stuff
 app.use(routes);
 
 // Start the express app via https server.
 server.listen(HTTPS_PORT, () => {
+	/* eslint-disable */
 	console.log(
 		`Server running. Visit https://localhost:${HTTPS_PORT} (note the HTTPS; there is no HTTP -> HTTPS redirect!)`
 	);
+	/* eslint-enable */
 });

@@ -4,12 +4,11 @@ const { Router } = require('express');
 const router = Router();
 
 // latest products shown at root
-// const { getLatestProducts } = require('../controllers/productCtrl');
-
-// router.get('/', getLatestProducts);
+// const { getLatestProducts } = require('../controllers/');
+// router.get('/home', getLatestProducts);
 
 // pipe all other requests through the route modules
 // router.use(require('./authRoute'));
-// router.use(require('./product-add'));
+router.use(require('./home'));
 
 module.exports = router;

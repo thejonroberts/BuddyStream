@@ -14,14 +14,22 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	User.associate = function(models) {
-		User.belongsToMany(models.User, {
-			through: 'Buddies',
-			as: 'UserOneId'
+		User.hasMany(models.User, {
+			through: 'UserBuddies',
+			as: 'UserOneId',
+			foreignKey: 'id'
 		});
-		User.belongsToMany(models.User, {
-			through: 'Buddies',
-			as: 'UserTwoId'
+		User.hasMany(models.User, {
+			through: 'UserBuddies',
+			as: 'UserTwoId',
+			foreignKey: 'id'
 		});
+		// User.hasMany(models.UserBuddies, {
+		// 	foreignKey: 'UserOneId'
+		// });
+		// User.hasMany(models.UserBuddies, {
+		// 	foreignKey: 'UserTwoId'
+		// });
 	};
 	return User;
 };

@@ -1,1 +1,107 @@
-[{"UserOneId":4,"UserTwoId":5,"createdAt":"2017-11-04T19:07:01.360Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":3,"UserTwoId":9,"createdAt":"2016-11-24T08:31:51.969Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":8,"UserTwoId":9,"createdAt":"2016-12-25T00:34:27.666Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":3,"UserTwoId":4,"createdAt":"2017-04-22T22:34:48.181Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":1,"UserTwoId":3,"createdAt":"2017-10-30T01:11:53.416Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":6,"UserTwoId":10,"createdAt":"2017-08-29T19:37:57.813Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":1,"UserTwoId":2,"createdAt":"2017-01-02T10:14:12.538Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":4,"UserTwoId":5,"createdAt":"2017-05-02T23:26:33.516Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":3,"UserTwoId":9,"createdAt":"2016-12-07T12:58:17.730Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":2,"UserTwoId":5,"createdAt":"2016-12-16T04:58:24.604Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":2,"UserTwoId":10,"createdAt":"2017-08-18T14:08:33.605Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":9,"UserTwoId":10,"createdAt":"2017-10-30T19:09:26.245Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":2,"UserTwoId":9,"createdAt":"2017-03-29T17:31:31.723Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":7,"UserTwoId":10,"createdAt":"2017-01-09T03:05:14.147Z","updatedAt":"2017-11-06T16:35:17.057Z"},{"UserOneId":4,"UserTwoId":9,"createdAt":"2017-02-02T09:03:51.419Z","updatedAt":"2017-11-06T16:35:17.057Z"}]
+[
+	{
+		"UserOneId": 1,
+		"UserTwoId": 2,
+		"statusCode": 4,
+		"createdAt": "2017-09-16T12:44:51.757Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 2,
+		"UserTwoId": 3,
+		"statusCode": 4,
+		"createdAt": "2017-03-21T00:41:16.003Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 4,
+		"UserTwoId": 7,
+		"statusCode": 4,
+		"createdAt": "2017-07-23T12:07:22.694Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 1,
+		"UserTwoId": 3,
+		"statusCode": 4,
+		"createdAt": "2017-02-05T07:18:03.651Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 2,
+		"UserTwoId": 10,
+		"statusCode": 4,
+		"createdAt": "2017-05-30T23:16:15.089Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 4,
+		"UserTwoId": 10,
+		"statusCode": 4,
+		"createdAt": "2017-05-22T13:17:21.659Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 8,
+		"UserTwoId": 9,
+		"statusCode": 4,
+		"createdAt": "2017-04-25T13:19:00.671Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 8,
+		"UserTwoId": 10,
+		"statusCode": 4,
+		"createdAt": "2017-06-26T07:14:18.730Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 2,
+		"UserTwoId": 5,
+		"statusCode": 4,
+		"createdAt": "2017-03-05T05:53:32.075Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 6,
+		"UserTwoId": 7,
+		"statusCode": 4,
+		"createdAt": "2017-01-27T01:02:17.116Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 4,
+		"UserTwoId": 9,
+		"statusCode": 4,
+		"createdAt": "2017-07-18T13:22:59.964Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 1,
+		"UserTwoId": 7,
+		"statusCode": 4,
+		"createdAt": "2016-11-15T08:01:16.223Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 6,
+		"UserTwoId": 8,
+		"statusCode": 4,
+		"createdAt": "2017-10-26T11:35:50.852Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 2,
+		"UserTwoId": 9,
+		"statusCode": 4,
+		"createdAt": "2017-03-14T00:53:36.605Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	},
+	{
+		"UserOneId": 4,
+		"UserTwoId": 5,
+		"statusCode": 4,
+		"createdAt": "2017-09-03T23:32:04.923Z",
+		"updatedAt": "2017-11-06T17:52:51.076Z"
+	}
+]
