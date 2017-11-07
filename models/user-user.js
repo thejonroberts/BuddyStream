@@ -5,14 +5,14 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	UserBuddies.associate = function(models) {
-		// UserBuddies.belongsTo(models.User, {
-		// 	foreignKey: 'id',
-		// 	otherKey: 'UserOneId'
-		// });
-		// UserBuddies.belongsTo(models.User, {
-		// 	foreignKey: 'id',
-		// 	otherKey: 'UserTwoId'
-		// });
+		UserBuddies.belongsTo(models.User, {
+			foreignKey: 'id',
+			otherKey: 'UserOneId'
+		});
+		UserBuddies.belongsTo(models.User, {
+			foreignKey: 'id',
+			otherKey: 'UserTwoId'
+		});
 	};
 
 	return UserBuddies;

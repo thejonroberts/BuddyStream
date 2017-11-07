@@ -3,6 +3,7 @@
 module.exports.showBuddySelection = (req, res, next) => {
 	const { User } = req.app.get('models');
 	User.findById(req.params.id, {
+		include: [{ all: true }]
 		// include: [
 		// 	{
 		// 		model: User,
