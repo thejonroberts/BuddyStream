@@ -1,7 +1,7 @@
 'use strict';
 
 require('./users');
-require('./buddies');
+// require('./buddies');
 require('./sources');
 require('./streams');
 require('./sessions');
