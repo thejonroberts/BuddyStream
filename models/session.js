@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	Session.associate = function(models) {
-		Session.belongsTo(models.UserBuddies, {
-			foreignKey: 'id'
-		});
+		// Session.belongsTo(models.UserBuddies, {
+		// 	foreignKey: 'id'
+		// });
 		Session.hasOne(models.Stream, {
 			foreignKey: 'id'
 		});

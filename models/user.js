@@ -15,21 +15,9 @@ module.exports = (sequelize, DataTypes) => {
 
 	User.associate = function(models) {
 		User.belongsToMany(models.User, {
-			through: 'UserBuddies',
-			as: 'UserFriends',
-			foreignKey: 'UserId'
+			as: 'Buddies',
+			through: 'UserBuddies'
 		});
-		User.belongsToMany(models.User, {
-			through: 'UserBuddies',
-			as: 'UserBuddies',
-			foreignKey: 'UserTwoId'
-		});
-		// User.hasMany(models.UserBuddies, {
-		// 	foreignKey: 'UserOneId'
-		// });
-		// User.hasMany(models.UserBuddies, {
-		// 	foreignKey: 'UserTwoId'
-		// });
 	};
 	return User;
 };

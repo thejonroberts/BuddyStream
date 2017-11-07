@@ -10,7 +10,7 @@ module.exports = {
 				onUpdate: 'CASCADE',
 				onDelete: 'CASCADE'
 			},
-			UserId: {
+			UserOneId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				references: {
