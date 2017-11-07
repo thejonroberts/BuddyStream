@@ -3,8 +3,8 @@
 const { Router } = require('express');
 const router = Router();
 
-const { showBuddySelection } = require('../controllers/home-ctrl');
+const { showLaunchSelection } = require('../controllers/home-ctrl');
 
-router.get('/home/:id', showBuddySelection);
+router.get('/home/:id', showLaunchSelection);
 
 module.exports = router;

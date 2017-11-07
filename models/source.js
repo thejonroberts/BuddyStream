@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
 	Source.associate = function(models) {
 		Source.hasMany(models.Stream, {
-			foreignKey: 'sourceId'
+			foreignKey: 'SourceId'
 		});
 	};
 

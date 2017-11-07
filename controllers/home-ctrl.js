@@ -1,21 +1,49 @@
 'use strict';
 
-module.exports.showBuddySelection = (req, res, next) => {
-	const { User } = req.app.get('models');
-	User.findById(req.params.id, {
-		include: [{ all: true }]
-		// include: [
-		// 	{
-		// 		model: User,
-		// 		as: 'Buddies',
-		// 		through: {
-		// 			attributes: ['UserOneId', 'UserTwoId']
-		// 		}
-		// 	}
-		// ]
+module.exports.showLaunchSelection = (req, res, next) => {
+	const { User, Stream, sequelize } = req.app.get('models');
+	// get user with list of lil and big buddies (ids lower or higher, respectively)
+	return User.findById(req.params.id, {
+		include: { all: true }
 	})
-		.then(buddies => {
-			res.json(buddies);
+		.then(user => {
+			return Stream.findAll({}).then(streams => {
+				// raw query to get UserBuddies with either matching user.
+				return sequelize
+					.query(
+						`SELECT * FROM "UserBuddies"
+						WHERE "UserBuddies"."UserOneId" = ${req.params.id}
+						OR "UserBuddies"."UserTwoId" = ${req.params.id}`,
+						{
+							type: sequelize.QueryTypes.SELECT
+						}
+					)
+					.then(buddies => {
+						buddies.forEach(buddy => {
+							if (buddy.UserOneId != req.params.id) {
+								user.BigBuddies.forEach(BigBuddy => {
+									if (BigBuddy.id === buddy.UserOneId) {
+										buddy.first = BigBuddy.first;
+										buddy.last = BigBuddy.last;
+										buddy.username = BigBuddy.username;
+										buddy.email = BigBuddy.email;
+									}
+								});
+							} else if (buddy.UserTwoId != req.params.id) {
+								user.LilBuddies.forEach(LilBuddy => {
+									if (LilBuddy.id === buddy.UserTwoId) {
+										buddy.first = LilBuddy.first;
+										buddy.last = LilBuddy.last;
+										buddy.username = LilBuddy.username;
+										buddy.email = LilBuddy.email;
+									}
+								});
+							}
+						});
+						res.json({ user, streams, buddies });
+						res.render('launch', { user });
+					});
+			});
 		})
 		.catch(err => {
 			next(err);

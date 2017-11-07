@@ -86,10 +86,11 @@ wss.broadcast = function(data) {
 
 // EXPRESS SETUP
 // Serve static files from the 'public' folder.
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use('/public', express.static(__dirname + '/public'));
 app.use(sessionParser);
-app.set('models', require('./models'));
 app.set('view engine', 'pug');
+app.set('models', require('./models'));
 // app.locals.globalWow = 'Something we need globally?';
 
 // Begin middleware stack
