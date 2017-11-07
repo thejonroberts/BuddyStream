@@ -1,5 +1,16 @@
 extends layout.pug
 block content
-  h1 Launch a BuddyStream:
-  if buddies
-    p YES
+  h1 New BuddyStream:
+  form(action=`/new-session`, method="POST")
+    .form-group
+      label(for='buddySelect') Choose a buddy
+      select(class='custom-select' id="buddySelect")
+        each buddy in buddies
+          option(selected=`${buddy.buddyId}`) #{buddy.first} #{buddy.last}
+    .form-group
+      label(for='streamSelect') Choose a stream
+      select(class='custom-select' id="streamSelect")
+        each stream in streams
+          option(selected=`${stream.id}`) #{stream.title}
+    button(type="submit" class="btn btn-primary") New BuddyStream
+

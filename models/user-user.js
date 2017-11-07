@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
 	UserBuddies.associate = function(models) {
 		UserBuddies.belongsTo(models.User, {
 			foreignKey: 'id',
-			otherKey: 'UserOneId'
+			otherKey: 'UserTwoId'
 		});
 		UserBuddies.belongsTo(models.User, {
 			foreignKey: 'id',
-			otherKey: 'UserTwoId'
+			otherKey: 'UserOneId'
 		});
 	};
 

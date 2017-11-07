@@ -20,28 +20,30 @@ module.exports.showLaunchSelection = (req, res, next) => {
 					)
 					.then(buddies => {
 						buddies.forEach(buddy => {
-							if (buddy.UserOneId != req.params.id) {
+							if (buddy.UserTwoId != req.params.id) {
 								user.BigBuddies.forEach(BigBuddy => {
-									if (BigBuddy.id === buddy.UserOneId) {
+									if (BigBuddy.id === buddy.UserTwoId) {
 										buddy.first = BigBuddy.first;
 										buddy.last = BigBuddy.last;
 										buddy.username = BigBuddy.username;
 										buddy.email = BigBuddy.email;
+										buddy.buddyId = BigBuddy.id;
 									}
 								});
-							} else if (buddy.UserTwoId != req.params.id) {
+							} else if (buddy.UserOneId != req.params.id) {
 								user.LilBuddies.forEach(LilBuddy => {
-									if (LilBuddy.id === buddy.UserTwoId) {
+									if (LilBuddy.id === buddy.UserOneId) {
 										buddy.first = LilBuddy.first;
 										buddy.last = LilBuddy.last;
 										buddy.username = LilBuddy.username;
 										buddy.email = LilBuddy.email;
+										buddy.buddyId = LilBuddy.id;
 									}
 								});
 							}
 						});
-						res.json({ user, streams, buddies });
-						res.render('launch', { user });
+						// res.json({ user, streams, buddies });
+						res.render('launch', { user, streams, buddies });
 					});
 			});
 		})
