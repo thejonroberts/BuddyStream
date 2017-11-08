@@ -12,6 +12,21 @@ block content
         input(id="endCallButton" class="btn btn-sm btn-secondary" type='button', disabled='', value='Disconnect')
         input(id="enterTheater" class="btn btn-sm btn-secondary" type='button', disabled='', value='Theater Mode')
         input(id="exitTheater" class="btn btn-sm btn-outline-danger" type='button', disabled='', value='EXIT')
+        .rgb
+          label(for='rmin') Red Min:
+          input(type='range', min='0', max='255', name='rmin', value='51')
+          label(for='rmax') Red Max:
+          input(type='range', min='0', max='255', name='rmax', value='204')
+          br
+          label(for='gmin') Green Min:
+          input(type='range', min='0', max='255', name='gmin', value='51')
+          label(for='gmax') Green Max:
+          input(type='range', min='0', max='255', name='gmax', value='204')
+          br
+          label(for='bmin') Blue Min:
+          input(type='range', min='0', max='255', name='bmin', value='51')
+          label(for='bmax') Blue Max:
+          input(type='range', min='0', max='255', name='bmax', value='204')
       .webcamWrapper
         video#remoteVideo.player(autoplay='')
   script(src='/public/lib/jquery/jquery.min.js')
