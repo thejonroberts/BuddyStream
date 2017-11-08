@@ -1,14 +1,19 @@
 extends layout
 block content
   #main
-    h2 Buddy Stream Test
-    #streamContainer
-      iframe(width='560', height='315', src=`${session.streamUrl}`, frameborder='0', allowfullscreen='')
+    div(id="streamContainer")
+      iframe(src=`https://www.youtube.com/embed/${movie.sourceIdentifier}`, frameborder='0', allowfullscreen='')
       canvas.canvas
-    video#localVideo.player(autoplay='', muted='')
-    video#remoteVideo.player(autoplay='')
-    input#videoCallButton(type='button', onclick='start(true)', value='Video Call')
-    input#endCallButton(type='button', disabled='', value='End Call')
+    div(id="webcamContainer" class="d-inline-flex")
+      .webcamWrapper
+        video(id="localVideo" class="player" autoplay='', muted='')
+      .controls
+        input(id="videoCallButton" class="btn btn-sm btn-primary" type='button', onclick='start(true)', value='Connect')
+        input(id="endCallButton" class="btn btn-sm btn-secondary" type='button', disabled='', value='Disconnect')
+        input(id="enterTheater" class="btn btn-sm btn-secondary" type='button', disabled='', value='Theater Mode')
+        input(id="exitTheater" class="btn btn-sm btn-outline-danger" type='button', disabled='', value='EXIT')
+      .webcamWrapper
+        video#remoteVideo.player(autoplay='')
   script(src='/public/lib/jquery/jquery.min.js')
   script(src='/public/lib/popper.js/popper.min.js')
   script(src='/public/lib/bootstrap/bootstrap.min.js')

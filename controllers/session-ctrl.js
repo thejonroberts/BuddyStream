@@ -23,7 +23,7 @@ module.exports.launchSession = (req, res, next) => {
 		.then(session => {
 			// find Movie - session.MovieId
 			Movie.findById(session.MovieId, {}).then(movie => {
-				res.json({ session, movie });
+				// res.json({ session, movie });
 				res.render('session', { session, movie });
 			});
 		})

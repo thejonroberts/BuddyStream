@@ -42,7 +42,7 @@ module.exports.showLaunchSelection = (req, res, next) => {
 								});
 							}
 						});
-						res.json({ user, movies, buddies });
+						// res.json({ user, movies, buddies });
 						res.render('launch', { user, movies, buddies });
 					});
 			});

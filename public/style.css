@@ -1,7 +1,13 @@
+/* black - #171819 */
+
 html,
 body {
-	background-color: lightgrey;
+	background-color: #171819;
 	height: 100%;
+}
+
+#main {
+	height: 100vh;
 }
 
 #streamContainer {
@@ -11,11 +17,7 @@ body {
 	height: 0;
 }
 
-video {
-	width: 40%;
-}
-
-/* #streamContainer iframe {
+#streamContainer iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -34,7 +36,27 @@ video {
 }
 
 .player {
-	width: 20%;
+	width: 100%;
 	z-index: 3;
-	display: none;
-} */
+}
+
+#webcamContainer {
+	display: inline-flex;
+	height: 20vh;
+}
+
+.webcamWrapper {
+	max-height: 100%;
+	max-width: 25%;
+}
+
+.webcamWrapper video {
+	height: 100%;
+}
+
+.controls {
+	flex-grow: 1;
+	display: inline-flex;
+	justify-content: space-around;
+	align-items: start;
+}
