@@ -1,17 +1,17 @@
 'use strict';
 
 const fs = require('fs');
-const uuid = require('uuid');
+// const uuid = require('uuid');
 const express = require('express');
 const session = require('express-session');
 const app = express();
 const https = require('https');
 const WebSocket = require('ws');
 const methodOverride = require('method-override');
-const passport = require('passport');
+// const passport = require('passport');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
-const expressValidator = require('express-validator');
+// const expressValidator = require('express-validator');
 
 // WEBSOCKET SERVER SETUP
 // ---------------------------
@@ -119,7 +119,7 @@ app.use(bodyParser.json());
 app.use(flash());
 
 // validation - must be after bodyParser as it uses bodyParser to access parameters
-app.use(expressValidator());
+// app.use(expressValidator());
 
 // TODO Add a 404 error handler - pipe all server errors to from the routing middleware
 

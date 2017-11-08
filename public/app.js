@@ -1,42 +1,56 @@
-let PORT = 8443;
+const PORT = 8443;
 
-var localVideo;
-var remoteVideo;
-var peerConnection;
-var uuid;
-var serverConnection;
-var localStream;
+// var localVideo;
+// var remoteVideo;
+// var peerConnection;
+// var uuid;
+// var serverConnection;
+let localStream = null;
+let peerConnection = null;
+// var canvas;
+// var ctx;
+// var theaterModeButton;
 
-var peerConnectionConfig = {
+const peerConnectionConfig = {
 	iceServers: [
 		{ urls: 'stun:stun.services.mozilla.com' },
 		{ urls: 'stun:stun.l.google.com:19302' }
 	]
 };
 
-// wait for page load (iframe unreliabe load time)
-$(document).ready(() => {
-	uuid = uuid();
+// set user id
+let uuid = createUUID();
+// const video = document.querySelector('.player');
+const canvas = document.querySelector('.canvas');
+let ctx = canvas.getContext('2d');
+const localVideo = document.getElementById('localVideo');
+const remoteVideo = document.getElementById('remoteVideo');
+const $theaterButton = $('#enterTheater');
+const serverConnection = new WebSocket(
+	`wss://${window.location.hostname}:${PORT}`
+);
+serverConnection.onmessage = gotMessageFromServer;
 
-	localVideo = document.getElementById('localVideo');
-	remoteVideo = document.getElementById('remoteVideo');
-	serverConnection = new WebSocket(`wss://${window.location.hostname}:${PORT}`);
-	serverConnection.onmessage = gotMessageFromServer;
+const constraints = {
+	video: true,
+	audio: true
+};
 
-	var constraints = {
-		video: true,
-		audio: true
-	};
+if (navigator.mediaDevices.getUserMedia) {
+	navigator.mediaDevices
+		.getUserMedia(constraints)
+		.then(getUserMediaSuccess)
+		.catch(errorHandler);
+} else {
+	alert('Your browser does not support getUserMedia API');
+}
 
-	if (navigator.mediaDevices.getUserMedia) {
-		navigator.mediaDevices
-			.getUserMedia(constraints)
-			.then(getUserMediaSuccess)
-			.catch(errorHandler);
-	} else {
-		alert('Your browser does not support getUserMedia API');
-	}
+$theaterButton.on('click', () => {
+	paintToCanvas(localVideo);
 });
+// remoteVideo.addEventListener('canplaythrough', paintToCanvas);
+// localVideo.addEventListener('play', paintToCanvas(localVideo));
+// video.addEventListener('canplay', paintToCanvas);
 
 function getUserMediaSuccess(stream) {
 	localStream = stream;
@@ -113,9 +127,9 @@ function errorHandler(error) {
 	console.log(error);
 }
 
-// Taken from http://stackoverflow.com/a/105074/515584
+// From example - Taken from http://stackoverflow.com/a/105074/515584
 // Strictly speaking, it's not a real UUID, but it gets the job done here
-function uuid() {
+function createUUID() {
 	function s4() {
 		return Math.floor((1 + Math.random()) * 0x10000)
 			.toString(16)
@@ -140,14 +154,11 @@ function uuid() {
 
 // WEBCAM / CANVAS EFFECTS
 
-const video = document.querySelector('.player');
-const canvas = document.querySelector('.canvas');
-const ctx = canvas.getContext('2d');
-
-function paintToCanvas() {
+function paintToCanvas(video) {
+	// console.log('video', video);
 	const width = video.videoWidth;
 	const height = video.videoHeight;
-	// console.log(width, height); // 640 x 480
+	// console.log('dimensions', width, height); // 640 x 480
 	// make canvas larger than video resolution, to avoid grainy scaling when drawing to canvas.
 	canvas.width = width * 4;
 	canvas.height = height * 4;
@@ -207,8 +218,6 @@ function greenScreen(pixels) {
 }
 
 // getVideo();
-
-video.addEventListener('canplay', paintToCanvas);
 
 // FROM WS npm module example  - after declarations top of doc.ready fn
 // wsButton.onclick = () => {
