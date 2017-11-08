@@ -4,10 +4,10 @@ const streams = require('../data/streams');
 
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.bulkInsert('Streams', streams, {});
+		return queryInterface.bulkInsert('Movies', streams, {});
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.bulkDelete('Streams', null, {});
+		return queryInterface.bulkDelete('Movies', null, {});
 	}
 };

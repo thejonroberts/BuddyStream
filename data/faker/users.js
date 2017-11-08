@@ -18,6 +18,10 @@ for (let i = 0; i < numUsers; i++) {
 	let username = faker.internet.userName();
 	let password = hasher('1234');
 	let pictureUrl = 'public/images/Sarah_Goodridge_Self_Portrait.jpg';
+	let city = faker.address.city();
+	let state = faker.address.state();
+	let country = 'US';
+
 	let createdAt = faker.date.past().toISOString();
 	let recent_date = faker.date.recent().toISOString();
 	let lastLoginDate = faker.date.between(createdAt, recent_date).toISOString();
@@ -32,7 +36,10 @@ for (let i = 0; i < numUsers; i++) {
 		username,
 		password,
 		updatedAt,
-		pictureUrl
+		pictureUrl,
+		city,
+		state,
+		country
 	});
 }
 

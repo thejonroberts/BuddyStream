@@ -4,10 +4,10 @@ const buddies = require('../data/buddies');
 
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.bulkInsert('Buddies', buddies, {});
+		return queryInterface.bulkInsert('UserBuddies', buddies, {});
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.bulkDelete('Buddies', null, {});
+		return queryInterface.bulkDelete('UserBuddies', null, {});
 	}
 };

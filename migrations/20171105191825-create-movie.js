@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('Streams', {
+		return queryInterface.createTable('Movies', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -12,6 +12,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				references: {
+					//TODO - add migration for this (circular) association
 					model: 'Sources',
 					key: 'id'
 				},
@@ -44,6 +45,6 @@ module.exports = {
 		});
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('Streams');
+		return queryInterface.dropTable('Movies');
 	}
 };

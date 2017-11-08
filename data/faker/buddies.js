@@ -25,12 +25,14 @@ for (let i = 0; i < numBuddies; i++) {
 		UserOneId = firstBud - 1;
 		UserTwoId = firstBud;
 	}
+	let statusCode = 4;
 	let createdAt = faker.date.past().toISOString();
 	let updatedAt = new Date().toISOString();
 
 	buddies.push({
 		UserOneId,
 		UserTwoId,
+		statusCode,
 		createdAt,
 		updatedAt
 	});

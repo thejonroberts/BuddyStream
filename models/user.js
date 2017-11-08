@@ -7,17 +7,22 @@ module.exports = (sequelize, DataTypes) => {
 		username: DataTypes.STRING,
 		password: DataTypes.STRING,
 		pictureUrl: DataTypes.STRING,
-		lastLoginDate: DataTypes.DATEONLY
+		lastLoginDate: DataTypes.DATEONLY,
+		city: DataTypes.STRING,
+		state: DataTypes.STRING,
+		country: DataTypes.STRING
 	});
 
 	User.associate = function(models) {
 		User.belongsToMany(models.User, {
-			through: 'Buddies',
-			as: 'UserOneId'
+			through: 'UserBuddies',
+			as: 'LilBuddies',
+			foreignKey: 'UserTwoId'
 		});
 		User.belongsToMany(models.User, {
-			through: 'Buddies',
-			as: 'UserTwoId'
+			through: 'UserBuddies',
+			as: 'BigBuddies',
+			foreignKey: 'UserOneId'
 		});
 	};
 	return User;

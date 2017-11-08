@@ -29,6 +29,15 @@ module.exports = {
 			lastLoginDate: {
 				type: Sequelize.DATEONLY
 			},
+			city: {
+				type: Sequelize.STRING
+			},
+			state: {
+				type: Sequelize.STRING
+			},
+			country: {
+				type: Sequelize.STRING
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE

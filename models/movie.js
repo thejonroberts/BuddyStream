@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-	var Stream = sequelize.define('Stream', {
+	var Movie = sequelize.define('Movie', {
 		title: DataTypes.STRING,
 		SourceId: DataTypes.INTEGER,
 		sourceIdentifier: DataTypes.STRING,
@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
 		runningMinutes: DataTypes.INTEGER
 	});
 
-	Stream.associate = function(models) {
-		Stream.belongsTo(models.Source, {
+	Movie.associate = function(models) {
+		Movie.hasOne(models.Source, {
 			foreignKey: 'id'
 		});
-		Stream.hasMany(models.Session, {
-			foreignKey: 'StreamId'
+		Movie.hasMany(models.Session, {
+			foreignKey: 'MovieId'
 		});
 	};
 
-	return Stream;
+	return Movie;
 };

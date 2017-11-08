@@ -86,10 +86,11 @@ wss.broadcast = function(data) {
 
 // EXPRESS SETUP
 // Serve static files from the 'public' folder.
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use('/public', express.static(__dirname + '/public'));
 app.use(sessionParser);
-app.set('models', require('./models'));
 app.set('view engine', 'pug');
+app.set('models', require('./models'));
 // app.locals.globalWow = 'Something we need globally?';
 
 // Begin middleware stack
@@ -123,12 +124,13 @@ app.use(expressValidator());
 // TODO Add a 404 error handler - pipe all server errors to from the routing middleware
 
 let routes = require('./routes/');
-// note that this needs to be after the above stuff
 app.use(routes);
 
-// Start the express server.
+// Start the express app via https server.
 server.listen(HTTPS_PORT, () => {
+	/* eslint-disable */
 	console.log(
 		`Server running. Visit https://localhost:${HTTPS_PORT} (note the HTTPS; there is no HTTP -> HTTPS redirect!)`
 	);
+	/* eslint-enable */
 });

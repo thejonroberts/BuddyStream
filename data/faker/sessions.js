@@ -8,12 +8,12 @@ let sessions = [];
 
 for (let i = 0; i < numSessions; i++) {
 	let percentViewed = Math.floor(Math.random() * 100) + 1;
-	let BuddyId = Math.floor(Math.random() * numBuddies) + 1;
-	let StreamId = 1;
+	let UserBuddyId = Math.floor(Math.random() * numBuddies) + 1;
+	let MovieId = 1;
 	let createdAt = faker.date.past().toISOString();
 	let updatedAt = new Date().toISOString();
 
-	sessions.push({ percentViewed, BuddyId, StreamId, createdAt, updatedAt });
+	sessions.push({ percentViewed, UserBuddyId, MovieId, createdAt, updatedAt });
 }
 
 let sessionsJSONString = JSON.stringify(sessions);
