@@ -4,12 +4,12 @@ block content
   form(action=`/session`, method="POST")
     .form-group
       label(for='buddySelect') Choose a buddy
-      select(class='custom-select' id="buddySelect" name="BuddyId")
+      select(class='custom-select' id="buddySelect" name="UserBuddyId")
         each buddy in buddies
           option(value=`${buddy.id}`) #{buddy.first} #{buddy.last}
-      label(for='streamSelect') Choose a stream
-      select(class='custom-select' id="streamSelect" name="StreamId")
-        each stream in streams
-          option(value=`${stream.id}`) #{stream.title}
+      label(for='streamSelect') Choose a movie
+      select(class='custom-select' id="streamSelect" name="MovieId")
+        each movie in movies
+          option(value=`${movie.id}`) #{movie.title}
     button(type="submit" class="btn btn-primary") New BuddyStream
 

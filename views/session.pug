@@ -3,7 +3,7 @@ block content
   #main
     h2 Buddy Stream Test
     #streamContainer
-      iframe(width='560', height='315', src=`${session.streamUrl}`, frameborder='0', allowfullscreen='')
+      iframe(width='560', height='315', src=`https://www.youtube.com/embed/${movie.sourceIdentifier}`, frameborder='0', allowfullscreen='')
       canvas.canvas
     video#localVideo.player(autoplay='', muted='')
     video#remoteVideo.player(autoplay='')
