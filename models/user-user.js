@@ -1,19 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-	var UserBuddies = sequelize.define('UserBuddies', {
+	var UserBuddy = sequelize.define('UserBuddy', {
 		statusCode: DataTypes.INTEGER
 	});
 
-	UserBuddies.associate = function(models) {
-		UserBuddies.belongsTo(models.User, {
+	UserBuddy.associate = function(models) {
+		UserBuddy.belongsTo(models.User, {
 			foreignKey: 'id',
 			otherKey: 'UserTwoId'
 		});
-		UserBuddies.belongsTo(models.User, {
+		UserBuddy.belongsTo(models.User, {
 			foreignKey: 'id',
 			otherKey: 'UserOneId'
 		});
+		UserBuddy.hasMany(models.Session, {
+			foreignKey: 'UserBuddyId'
+		});
 	};
 
-	return UserBuddies;
+	return UserBuddy;
 };

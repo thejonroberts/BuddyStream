@@ -8,7 +8,7 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			BuddyId: {
+			UserBuddyId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				references: {
@@ -21,10 +21,10 @@ module.exports = {
 			percentViewed: {
 				type: Sequelize.INTEGER
 			},
-			StreamId: {
+			MovieId: {
 				type: Sequelize.INTEGER,
 				references: {
-					model: 'Streams',
+					model: 'Movies',
 					key: 'id'
 				},
 				onUpdate: 'CASCADE',

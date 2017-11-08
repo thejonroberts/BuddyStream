@@ -10,5 +10,6 @@ const router = Router();
 // pipe all other requests through the route modules
 // router.use(require('./authRoute'));
 router.use(require('./home'));
+router.use(require('./session'));
 
 module.exports = router;

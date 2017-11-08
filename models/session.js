@@ -2,15 +2,15 @@
 module.exports = (sequelize, DataTypes) => {
 	var Session = sequelize.define('Session', {
 		percentViewed: DataTypes.INTEGER,
-		BuddyId: DataTypes.INTEGER,
-		StreamId: DataTypes.INTEGER
+		UserBuddyId: DataTypes.INTEGER,
+		MovieId: DataTypes.INTEGER
 	});
 
 	Session.associate = function(models) {
-		Session.belongsTo(models.UserBuddies, {
+		Session.hasOne(models.UserBuddy, {
 			foreignKey: 'id'
 		});
-		Session.hasOne(models.Stream, {
+		Session.hasOne(models.Movie, {
 			foreignKey: 'id'
 		});
 	};

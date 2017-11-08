@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports.showLaunchSelection = (req, res, next) => {
-	const { User, Stream, sequelize } = req.app.get('models');
+	const { User, Movie, sequelize } = req.app.get('models');
 	// get user with list of lil and big buddies (ids lower or higher, respectively)
 	return User.findById(req.params.id, {
 		include: { all: true }
 	})
 		.then(user => {
-			return Stream.findAll({}).then(streams => {
+			return Movie.findAll({}).then(movies => {
 				// raw query to get UserBuddies with either matching user.
 				return sequelize
 					.query(
@@ -42,8 +42,8 @@ module.exports.showLaunchSelection = (req, res, next) => {
 								});
 							}
 						});
-						// res.json({ user, streams, buddies });
-						res.render('launch', { user, streams, buddies });
+						res.json({ user, movies, buddies });
+						res.render('launch', { user, movies, buddies });
 					});
 			});
 		})

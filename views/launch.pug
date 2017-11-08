@@ -1,16 +1,15 @@
 extends layout.pug
 block content
   h1 New BuddyStream:
-  form(action=`/new-session`, method="POST")
+  form(action=`/session`, method="POST")
     .form-group
       label(for='buddySelect') Choose a buddy
-      select(class='custom-select' id="buddySelect")
+      select(class='custom-select' id="buddySelect" name="BuddyId")
         each buddy in buddies
-          option(selected=`${buddy.buddyId}`) #{buddy.first} #{buddy.last}
-    .form-group
+          option(value=`${buddy.id}`) #{buddy.first} #{buddy.last}
       label(for='streamSelect') Choose a stream
-      select(class='custom-select' id="streamSelect")
+      select(class='custom-select' id="streamSelect" name="StreamId")
         each stream in streams
-          option(selected=`${stream.id}`) #{stream.title}
+          option(value=`${stream.id}`) #{stream.title}
     button(type="submit" class="btn btn-primary") New BuddyStream
 
