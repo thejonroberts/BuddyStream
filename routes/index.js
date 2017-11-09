@@ -7,5 +7,6 @@ const router = Router();
 router.use(require('./auth'));
 router.use(require('./home'));
 router.use(require('./session'));
+router.use(require('./user'));
 
 module.exports = router;
