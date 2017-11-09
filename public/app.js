@@ -1,31 +1,37 @@
 const PORT = 8443;
 
-// var localVideo;
-// var remoteVideo;
-// var peerConnection;
-// var uuid;
-// var serverConnection;
+// set user id
+let uuid = createUUID();
+// const video = document.querySelector('.player');
+const canvas = document.querySelector('.canvas');
+let ctx = canvas.getContext('2d');
+// video html elements
+const localVideo = document.getElementById('localVideo');
+const remoteVideo = document.getElementById('remoteVideo');
+
+// option button elements/listeners
+const theaterButton = document.getElementById('enterTheater');
+theaterButton.addEventListener('click', () => {
+	paintToCanvas();
+});
+// remoteVideo.addEventListener('canplaythrough', paintToCanvas);
+// localVideo.addEventListener('play', paintToCanvas(localVideo));
+// video.addEventListener('canplay', paintToCanvas);
+// connect button - move handler here (from html)
+
+//
+// - RTC: get user media (webcam), and start RTC peer connection
+//
+// RTC setup
 let localStream = null;
 let peerConnection = null;
-// var canvas;
-// var ctx;
-// var theaterModeButton;
-
 const peerConnectionConfig = {
 	iceServers: [
 		{ urls: 'stun:stun.services.mozilla.com' },
 		{ urls: 'stun:stun.l.google.com:19302' }
 	]
 };
-
-// set user id
-let uuid = createUUID();
-// const video = document.querySelector('.player');
-const canvas = document.querySelector('.canvas');
-let ctx = canvas.getContext('2d');
-const localVideo = document.getElementById('localVideo');
-const remoteVideo = document.getElementById('remoteVideo');
-const $theaterButton = $('#enterTheater');
+// initialize websocket connection
 const serverConnection = new WebSocket(
 	`wss://${window.location.hostname}:${PORT}`
 );
@@ -45,18 +51,12 @@ if (navigator.mediaDevices.getUserMedia) {
 	alert('Your browser does not support getUserMedia API');
 }
 
-$theaterButton.on('click', () => {
-	paintToCanvas(localVideo);
-});
-// remoteVideo.addEventListener('canplaythrough', paintToCanvas);
-// localVideo.addEventListener('play', paintToCanvas(localVideo));
-// video.addEventListener('canplay', paintToCanvas);
-
 function getUserMediaSuccess(stream) {
 	localStream = stream;
 	localVideo.src = window.URL.createObjectURL(stream);
 }
 
+// called by "Connect" Button
 function start(isCaller) {
 	peerConnection = new RTCPeerConnection(peerConnectionConfig);
 	peerConnection.onicecandidate = gotIceCandidate;
@@ -126,6 +126,8 @@ function gotRemoteStream(event) {
 function errorHandler(error) {
 	console.log(error);
 }
+//
+// end of RTC handling ---------------------------------------------
 
 // From example - Taken from http://stackoverflow.com/a/105074/515584
 // Strictly speaking, it's not a real UUID, but it gets the job done here
@@ -154,25 +156,57 @@ function createUUID() {
 
 // WEBCAM / CANVAS EFFECTS
 
-function paintToCanvas(video) {
-	// console.log('video', video);
-	const width = video.videoWidth;
-	const height = video.videoHeight;
-	// console.log('dimensions', width, height); // 640 x 480
+function paintToCanvas() {
+	const localWidth = localVideo.videoWidth;
+	const localHeight = localVideo.videoHeight;
+	let remoteWidth = 0;
+	let remoteHeight = 0;
 	// make canvas larger than video resolution, to avoid grainy scaling when drawing to canvas.
-	canvas.width = width * 4;
-	canvas.height = height * 4;
+	canvas.width = localWidth * 4;
+	canvas.height = localHeight * 4;
+	let marginBottom = canvas.height * 0.1;
+	let marginLeft = canvas.width * 0.05;
+	// if remote video is active, grab dimensions
+	if (remoteVideo.src) {
+		remoteWidth = remoteVideo.videoWidth;
+		remoteHeight = remoteVideo.videoHeight;
+	}
 
 	return setInterval(() => {
 		// (src, xstart, ystart(topleft), xlength, ylength)
-		ctx.drawImage(video, 0, Math.floor(height * 2), width, height);
+		ctx.drawImage(
+			localVideo,
+			0 + marginLeft,
+			canvas.height - localHeight - marginBottom,
+			localWidth,
+			localHeight
+		);
+		// if remote, draw it next to local
+		if (remoteVideo.src) {
+			ctx.drawImage(
+				remoteVideo,
+				localWidth + marginLeft,
+				canvas.height - remoteHeight - marginBottom,
+				remoteWidth,
+				remoteHeight
+			);
+		}
 		// take pixels out - need to either take whole canvas, or just video portion, and place in same place with putImageData below
-		let pixels = ctx.getImageData(0, Math.floor(height * 2), width, height);
+		let pixels = ctx.getImageData(
+			marginLeft,
+			canvas.height - localHeight - marginBottom,
+			localWidth + remoteWidth,
+			localHeight
+		);
 		// add effects - greenscreen first, then apply effect
 		pixels = greenScreen(pixels);
 		pixels = silhouetteEffect(pixels);
 		// put altered image back on canvas - has to be same coordinates from getImageData!! otherwise tiling occurs
-		ctx.putImageData(pixels, 0, Math.floor(height * 2));
+		ctx.putImageData(
+			pixels,
+			marginLeft,
+			canvas.height - localHeight - marginBottom
+		);
 	}, 20);
 }
 
@@ -216,8 +250,6 @@ function greenScreen(pixels) {
 	// return image with out of range pixels removed
 	return pixels;
 }
-
-// getVideo();
 
 // FROM WS npm module example  - after declarations top of doc.ready fn
 // wsButton.onclick = () => {

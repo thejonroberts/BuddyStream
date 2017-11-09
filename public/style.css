@@ -9,6 +9,10 @@ body {
 	height: 100vh;
 }
 
+.hide {
+	display: none;
+}
+
 #streamContainer {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
