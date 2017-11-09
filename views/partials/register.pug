@@ -2,23 +2,35 @@
 .col-6
 	h2 New Here?
 	h3 Register:
-	form(name="register-user" method="post" action="/register")
+	form(name="register-user" method="POST" action="/register")
 		.form-group
-			label(class="form-control-label" for="firstName") First name
-			input(id="firstName" type="text" class="form-control" placeholder="e.g Maria" name="firstName")
+			label(class="form-control-label" for="firstName") First name*
+			input(id="firstName" type="text" class="form-control" placeholder="e.g Maria" name="first")
 		.form-group
-			label(class="form-control-label" for="lastName") Last name
-			input(id="lastName" type="text" class="form-control" placeholder="e.g. Jones" name="lastName")
+			label(class="form-control-label" for="lastName") Last name*
+			input(id="lastName" type="text" class="form-control" placeholder="e.g. Jones" name="last")
 		.form-group
-			label(class="form-control-label" for="username") Username
+			label(class="form-control-label" for="username") Username*
 			input(id="username" type="text" class="form-control" placeholder="e.g. mjones5" name="username")
 		.form-group
-			label(class="form-control-label" for="email") Email
-			input(id="email" type="text" class="form-control" placeholder="e.g maria@example.com" name="email")
+			label(class="form-control-label" for="email") Email*
+			input(id="email" type="email" class="form-control" placeholder="e.g maria@example.com" name="email")
 		.form-group
-			label(class="form-control-label" for="password") Please choose a password.
+			label(class="form-control-label" for="password") Password*
 			input(id="password" type="password" class="form-control" placeholder="Password" name="password")
 		.form-group
-			label(class="form-control-label" for="confimation") Please confirm your passord.
+			label(class="form-control-label" for="confimation")  Confirm password*
 			input(id="confirmation" type="password" class="form-control" placeholder="Confirmation" name="confirmation")
+		.form-group
+			label(class="form-control-label" for="confimation") Enter Picture URL:
+			input(id="confirmation" type="url" class="form-control" placeholder="http://www.domain.com/picture-name.jpeg" name="pictureUrl")
+		.form-group
+			label(class="form-control-label" for="confimation") City:
+			input(id="confirmation" type="text" class="form-control" placeholder="Nashville" name="city")
+		.form-group
+			label(class="form-control-label" for="confimation") State/Province:
+			input(id="confirmation" type="text" class="form-control" placeholder="Tennessee" name="state")
+		.form-group
+			label(class="form-control-label" for="confimation") Country(code):
+			input(id="confirmation" type="text" class="form-control" placeholder="US" name="country")
 		button(type="submit" class="btn-primary") Register

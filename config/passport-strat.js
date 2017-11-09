@@ -16,7 +16,7 @@ let User = null;
 const RegistrationStrategy = new Strategy(
 	// arg 1: declare what request (req) fields our usernameField and passwordField (passport variables) are.
 	{
-		usernameField: 'email',
+		usernameField: 'username',
 		passwordField: 'password',
 		passReqToCallback: true // allows us to pass back the entire request to the callback,
 		// which is particularly useful for signing up.
@@ -50,8 +50,12 @@ const RegistrationStrategy = new Strategy(
 						email,
 						password: userPassword,
 						username: req.body.username,
-						firstName: req.body.firstName,
-						lastName: req.body.lastName
+						first: req.body.first,
+						last: req.body.last,
+						city: req.body.city,
+						state: req.body.state,
+						country: req.body.country,
+						pictureUrl: req.body.pictureUrl
 					};
 				// create() is a Sequelize method
 				User.create(data).then((newUser, created) => {
