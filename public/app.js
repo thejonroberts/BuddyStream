@@ -13,14 +13,19 @@ const remoteVideo = document.getElementById('remoteVideo');
 const theaterButton = document.getElementById('enterTheater');
 const exitTheaterButton = document.getElementById('exitTheater');
 
-console.log(theaterButton);
 theaterButton.addEventListener('click', () => {
 	enterTheaterMode();
 });
 
-console.log(exitTheaterButton);
 exitTheaterButton.addEventListener('click', () => {
 	exitTheaterMode();
+});
+
+const rgbButton = document.getElementById('rgbButton');
+const rgbControls = document.querySelector('.rgb');
+
+rgbButton.addEventListener('click', () => {
+	rgbControls.classList.toggle('hide');
 });
 
 const videoCallButton = document.getElementById('videoCallButton');
@@ -179,6 +184,8 @@ function exitTheaterMode() {
 	remoteVideo.classList.remove('hide');
 	theaterButton.classList.remove('hide');
 	exitTheaterButton.classList.add('hide');
+	rgbButton.classList.add('hide');
+	rgbControls.classList.add('hide');
 }
 
 function enterTheaterMode() {
@@ -186,6 +193,7 @@ function enterTheaterMode() {
 	remoteVideo.classList.add('hide');
 	theaterButton.classList.add('hide');
 	exitTheaterButton.classList.remove('hide');
+	rgbButton.classList.remove('hide');
 	paintToCanvas();
 }
 
@@ -243,6 +251,7 @@ function paintToCanvas() {
 		);
 	}
 
+	// set interval, store ID to call clearInterval (using intervalID global var)
 	intervalID = window.setInterval(refreshEffects, 20);
 }
 

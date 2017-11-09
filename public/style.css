@@ -3,14 +3,11 @@
 html,
 body {
 	background-color: #171819;
+	color: #f7f7ff;
 }
 
 #main {
 	height: 100vh;
-}
-
-.hide {
-	display: none;
 }
 
 #streamContainer {
@@ -44,6 +41,7 @@ body {
 }
 
 #webcamContainer {
+	width: 100%;
 	display: inline-flex;
 	height: 20vh;
 }
@@ -60,6 +58,24 @@ body {
 .controls {
 	flex-grow: 1;
 	display: inline-flex;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: space-between;
 	align-items: start;
+}
+
+.controlButtons {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-around;
+	align-items: end;
+}
+
+.rgb {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-around;
+}
+
+.hide {
+	display: none;
 }
