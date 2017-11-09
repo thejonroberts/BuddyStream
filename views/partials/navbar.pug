@@ -1,0 +1,9 @@
+nav(class="navbar navbar-expand-lg navbar-light bg-light justify-content-between")
+	//- brand/logo
+	a(class="navbar-brand nav-item" href="/home") BuddyStream
+	//- logout button shown only when logged in
+	if session.passport
+		form(method="POST" class="form-inline nav-item")
+			button(class="btn btn-outline-primary" type="submit" formaction="/logout") Logout
+	else
+		a(class="btn btn-sm btn-outline-secondary nav-link" href="/") Login/Register

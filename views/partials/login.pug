@@ -1,0 +1,11 @@
+.col-6
+  h2 Existing User?
+  h3 Login:
+  form(name="login-user" method="post" action="/login")
+    .form-group
+      label(class="form-control-label" for="username") Username
+      input(id="username" type="text" class="form-control" placeholder="e.g. mjones5" name="username")
+    .form-group
+      label(class="form-control-label" for="password") Please enter your password.
+      input(id="password" type="password" class="form-control" placeholder="Password" name="password")
+    button(type="submit" class="btn-primary") Login

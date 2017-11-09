@@ -1,17 +1,16 @@
 'use strict';
 
 const fs = require('fs');
-// const uuid = require('uuid');
 const express = require('express');
 const session = require('express-session');
 const app = express();
 const https = require('https');
 const WebSocket = require('ws');
 const methodOverride = require('method-override');
-// const passport = require('passport');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
-// const expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 
 // WEBSOCKET SERVER SETUP
 // ---------------------------
@@ -31,47 +30,17 @@ const sessionParser = session({
 	resave: false
 });
 
-// TODO - use this to login / authenticate user (sessionParser v token v other?)
-// app.post('/login', (req, res) => {
-// 	//
-// 	// "Log in" user and set userId to session.
-// 	//
-// 	const id = uuid.v4();
-
-// 	console.log(`Updating session for user ${id}`);
-// 	req.session.userId = id;
-// 	res.send({ result: 'OK', message: 'Session updated' });
-// });
-
-// app.delete('/logout', (request, response) => {
-// 	console.log('Destroying session');
-// 	request.session.destroy();
-// 	response.send({ result: 'OK', message: 'Session destroyed' });
-// });
-
 // Create HTTPs server.
 const server = https.createServer(serverConfig, app);
 
 // Create Websocket on the HTTPS server
-const wss = new WebSocket.Server({
-	// verifyClient: (info, done) => {
-	// 	console.log('Parsing session from request...');
-	// 	sessionParser(info.req, {}, () => {
-	// 		console.log('Session is parsed!');
-	// 		// We can reject the connection by returning false (if no user) to done().
-	// 		done(info.req.session.userId);
-	// 	});
-	// },
-	server
-});
+const wss = new WebSocket.Server({ server });
 
 // handlers for websocket events
 wss.on('connection', function(ws, req) {
 	ws.on('message', function(message) {
 		// Broadcast any received message to all clients
-		console.log('received: %s', message);
-		// Here we can also use session parameters.
-		// console.log(`WS message ${message} from user ${req.session.userId}`);
+		// console.log('received: %s', message);
 		wss.broadcast(message);
 	});
 });
@@ -86,12 +55,10 @@ wss.broadcast = function(data) {
 
 // EXPRESS SETUP
 // Serve static files from the 'public' folder.
-// app.use(express.static('public'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use(sessionParser);
 app.set('view engine', 'pug');
 app.set('models', require('./models'));
-// app.locals.globalWow = 'Something we need globally?';
 
 // Begin middleware stack
 app.use(
@@ -103,28 +70,26 @@ app.use(
 	})
 );
 
-//execute passport strategies file
-// require('./config/passport-strat.js');
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
-// This custom middleware adds the logged-in user's info to the locals variable,
-// so we can access it in the Pug templates
-// app.use((req, res, next) => {
-// 	res.locals.session = req.session;
-// 	// console.log('res.locals.session', res.locals.session);
-// 	next();
-// });
+// PASSPORT SESSION SETUP:
+require('./config/passport-strat.js');
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+// add the logged-in user's info to the locals variable,
+app.use((req, res, next) => {
+	res.locals.session = req.session;
+	next();
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(flash());
-
+app.use(flash()); // TODO - custom messages on login/logout
 // validation - must be after bodyParser as it uses bodyParser to access parameters
-// app.use(expressValidator());
-
-// TODO Add a 404 error handler - pipe all server errors to from the routing middleware
+app.use(expressValidator());
 
 let routes = require('./routes/');
 app.use(routes);
+
+// TODO Add a 404 error handler - pipe all server errors to from the routing middleware
 
 // Start the express app via https server.
 server.listen(HTTPS_PORT, () => {
