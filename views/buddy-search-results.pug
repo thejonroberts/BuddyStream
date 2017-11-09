@@ -1,0 +1,17 @@
+extends layout.pug
+block content
+  .container
+    table(class="table")
+      each user in users
+        tr
+          td #{user.first} #{user.last}
+          td #{user.city}, #{user.state} #{user.country}
+          td #{user.username}
+          td
+            form(action=`/buddy-add/${user.id}` method='POST')
+              button(type='submit' class='btn btn-primary') Add Buddy
+      tr
+        td
+          a(href='/home')
+            button(class='btn btn-outline-secondary') Cancel
+
