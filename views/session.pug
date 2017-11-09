@@ -8,10 +8,10 @@ block content
       .webcamWrapper
         video(id="localVideo" class="player" autoplay='', muted='')
       .controls
-        input(id="videoCallButton" class="btn btn-sm btn-primary" type='button', onclick='start(true)', value='Connect')
-        input(id="endCallButton" class="btn btn-sm btn-secondary" type='button', disabled='', value='Disconnect')
+        input(id="videoCallButton" class="btn btn-sm btn-primary" type='button', value='Connect')
+        input(id="endCallButton" class="btn btn-sm btn-secondary hide" type='button', value='Disconnect')
         input(id="enterTheater" class="btn btn-sm btn-secondary" type='button', value='Theater Mode')
-        input(id="exitTheater" class="btn btn-sm btn-outline-danger" type='button', disabled='', value='EXIT')
+        input(id="exitTheater" class="btn btn-sm btn-outline-danger hide" type='button', value='Exit')
       .rgb.hide
         label(for='rmin') Red Min:
         input(type='range', min='0', max='255', name='rmin', value='159')

@@ -11,13 +11,30 @@ const remoteVideo = document.getElementById('remoteVideo');
 
 // option button elements/listeners
 const theaterButton = document.getElementById('enterTheater');
+const exitTheaterButton = document.getElementById('exitTheater');
+
+console.log(theaterButton);
 theaterButton.addEventListener('click', () => {
-	paintToCanvas();
+	enterTheaterMode();
 });
-// remoteVideo.addEventListener('canplaythrough', paintToCanvas);
-// localVideo.addEventListener('play', paintToCanvas(localVideo));
-// video.addEventListener('canplay', paintToCanvas);
-// connect button - move handler here (from html)
+
+console.log(exitTheaterButton);
+exitTheaterButton.addEventListener('click', () => {
+	exitTheaterMode();
+});
+
+const videoCallButton = document.getElementById('videoCallButton');
+videoCallButton.addEventListener('click', () => {
+	start(true);
+	videoCallButton.classList.add('hide');
+	endCallButton.classList.remove('hide');
+});
+
+const endCallButton = document.getElementById('endCallButton');
+endCallButton.addEventListener('click', () => {
+	videoCallButton.classList.remove('hide');
+	endCallButton.classList.add('hide');
+});
 
 //
 // - RTC: get user media (webcam), and start RTC peer connection
@@ -155,7 +172,24 @@ function createUUID() {
 }
 
 // WEBCAM / CANVAS EFFECTS
+function exitTheaterMode() {
+	clearInterval(intervalID);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	localVideo.classList.remove('hide');
+	remoteVideo.classList.remove('hide');
+	theaterButton.classList.remove('hide');
+	exitTheaterButton.classList.add('hide');
+}
 
+function enterTheaterMode() {
+	localVideo.classList.add('hide');
+	remoteVideo.classList.add('hide');
+	theaterButton.classList.add('hide');
+	exitTheaterButton.classList.remove('hide');
+	paintToCanvas();
+}
+
+var intervalID;
 function paintToCanvas() {
 	const localWidth = localVideo.videoWidth;
 	const localHeight = localVideo.videoHeight;
@@ -172,7 +206,7 @@ function paintToCanvas() {
 		remoteHeight = remoteVideo.videoHeight;
 	}
 
-	return setInterval(() => {
+	function refreshEffects() {
 		// (src, xstart, ystart(topleft), xlength, ylength)
 		ctx.drawImage(
 			localVideo,
@@ -207,7 +241,9 @@ function paintToCanvas() {
 			marginLeft,
 			canvas.height - localHeight - marginBottom
 		);
-	}, 20);
+	}
+
+	intervalID = window.setInterval(refreshEffects, 20);
 }
 
 // apply effect to webcam
