@@ -29,6 +29,39 @@ module.exports.login = (req, res, next) => {
 	})(req, res, next);
 };
 
+/**
+ * Controller to handle new user registration
+ */
+module.exports.register = (req, res, next) => {
+	if (req.body.password === req.body.confirmation) {
+		// first argument is name of the passport strategy we created in passport-strat.js
+		passport.authenticate('local-signup', (err, user, msgObj) => {
+			if (err) {
+				next(err);
+			} //or return next(err)
+			if (!user) {
+				console.log('no user', user, msgObj);
+				return res.render('login', msgObj);
+			}
+			// Go ahead and login the new user once they are signed up
+			req.logIn(user, err => {
+				if (err) {
+					return next(err);
+				}
+				// console.log('authenticated. Rerouting to welcome page!');
+				// Save a msg in a cookie whose value will be added to req
+				// using https://www.npmjs.com/package/express-flash-2 docs, but installed express-flash
+				// req.flash('registerMsg', `Thanks for signing up, ${user.firstName}!`);
+				res.redirect('/home');
+			});
+		})(req, res, next);
+	} else {
+		res.render('login', {
+			message: 'Password & password confirmation do not match'
+		});
+	}
+};
+
 module.exports.welcome = (req, res, next) => {
 	let activeUserId = req.session.passport.user.id;
 	// req.flash('welcomeBackMsg', `Welcome back, `);
