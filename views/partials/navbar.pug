@@ -1,0 +1,42 @@
+nav(class="navbar navbar-expand-lg navbar-light bg-light")
+	//- brand/logo
+	a(class="navbar-brand nav-item" href="/") BuddyStream
+	//- hamburger button on small screens
+	button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+		span(class="navbar-toggler-icon")
+	//- this div will be inside the hamburger!
+	div(class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup")
+		//- products dropdown
+		//- div(class="nav-item dropdown")
+		//- 	button(class="btn btn-light nav-item dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Products
+		//- 	div(class="dropdown-menu nav-item" aria-labelledby="dropdownMenuButton")
+		//- 		//-latest products link
+		//- 		a(class="dropdown-item nav-link" href="/") Latest
+		//- 		//- product types link
+		//- 		a(class="dropdown-item nav-link" href="/product-types") Categories
+		//- 		//- divider
+		//- 		div(class="dropdown-divider")
+		//- 		//-prodTypes should be on every request - from app.use function in app.js
+		//- 		if locals.prodTypes
+		//- 			//-product type list
+		//- 			each product in locals.prodTypes
+		//- 				a(class="dropdown-item nav-link" href=`/product-types/${product.id}`) #{product.name}
+		//- user info shown only when logged in
+		//- if session.passport TODO
+		//- 	//- welcome message
+		//- 	//- span(class="navbar-text") Welcome, #{session.passport.user.firstName}!
+		//- 	//- search form
+		//- 	form(class="form-inline my-2 my-lg-0 product-search-form nav-item" action="" method="GET")
+		//- 		input(class="form-control mr-sm-2 product-search-input" type="search" placeholder="Search Products" aria-label="Search")
+		//- 		button(class="btn btn-outline-success my-2 my-sm-0 search-products-btn" type="submit") Search
+		//- 	//- account link
+		//- 	//- a(class="btn btn-light nav-item nav-link" href=`/account`) Account
+		//- 	//- logout button
+		//- 	form(method="POST" class="form-inline nav-item")
+		//- 		button(class="btn btn-outline-primary" type="submit" formaction="/logout") Logout
+		//- else
+		//- 	div(class="nav-item row")
+		//- 		//- login button
+		//- 		a(class="btn btn-primary nav-link col-sm" href="/login") Login
+		//- 		//- register button
+		//- 		//- a(class="btn btn-info nav-link col-sm" href="/register") Register

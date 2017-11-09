@@ -1,0 +1,23 @@
+.col-6
+	h2 New Here?
+	h3 Register:
+	form(name="register-user" method="post" action="/register")
+		.form-group
+			label(class="form-control-label" for="firstName") First name
+			input(id="firstName" type="text" class="form-control" placeholder="e.g Maria" name="firstName")
+		.form-group
+			label(class="form-control-label" for="lastName") Last name
+			input(id="lastName" type="text" class="form-control" placeholder="e.g. Jones" name="lastName")
+		.form-group
+			label(class="form-control-label" for="username") Username
+			input(id="username" type="text" class="form-control" placeholder="e.g. mjones5" name="username")
+		.form-group
+			label(class="form-control-label" for="email") Email
+			input(id="email" type="text" class="form-control" placeholder="e.g maria@example.com" name="email")
+		.form-group
+			label(class="form-control-label" for="password") Please choose a password.
+			input(id="password" type="password" class="form-control" placeholder="Password" name="password")
+		.form-group
+			label(class="form-control-label" for="confimation") Please confirm your passord.
+			input(id="confirmation" type="password" class="form-control" placeholder="Confirmation" name="confirmation")
+		button(type="submit" class="btn-primary") Register
