@@ -34,3 +34,12 @@ module.exports.welcome = (req, res, next) => {
 	// req.flash('welcomeBackMsg', `Welcome back, `);
 	res.redirect(`/home/${activeUserId}`);
 };
+
+/**
+ * Controller method to handle the logout click, destroy the session, and redirect users to the home page
+ */
+module.exports.logout = (req, res) => {
+	req.session.destroy(function(err) {
+		res.redirect('/');
+	});
+};

@@ -3,10 +3,16 @@
 const { Router } = require('express');
 const router = Router();
 
-const { showLogin, login, welcome } = require('../controllers/auth-ctrl');
+const {
+	showLogin,
+	login,
+	welcome,
+	logout
+} = require('../controllers/auth-ctrl');
 
 router.get('/', showLogin);
 router.post('/login', login);
+router.post('/logout', logout);
 
 router.get('/home', isLoggedIn, welcome);
 
