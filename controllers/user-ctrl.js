@@ -26,10 +26,6 @@ module.exports.buddySearch = (req, res, next) => {
 
 module.exports.buddyAdd = (req, res, next) => {
 	const { User, UserBuddies, sequelize } = req.app.get('models');
-	// let createdAt = new Date();
-	// console.log('created at', createdAt);
-	// let updatedAt = new Date();
-	// console.log('updatedAt', updatedAt);
 	let UserOneId = null;
 	let UserTwoId = null;
 	let statusCode = null;
@@ -41,22 +37,22 @@ module.exports.buddyAdd = (req, res, next) => {
 		UserTwoId = req.params.id;
 		UserOneId = req.session.passport.user.id;
 		statusCode = 1;
+		User.find({
+			where: { id: UserOneId }
+		})
+			.then(userOne => {
+				User.find({
+					where: { id: UserTwoId }
+				}).then(userTwo => {
+					userOne.addLilBuddies(userTwo).then(results => {
+						res.json(results);
+					});
+				});
+				// res.json(buddies);
+				// res.redirect(`/home/${req.session.passport.user.id}`);
+			})
+			.catch(err => {
+				next(err);
+			});
 	}
-	// UserBuddies.
-	// return sequelize
-	// 	.query(
-	// 		`INSERT INTO "UserBuddies"
-	//     ("UserOneId", "UserTwoId", "statusCode")
-	//     VALUES (${UserOneId}, ${UserTwoId}, ${statusCode})`,
-	// 		{
-	// 			type: sequelize.QueryTypes.SELECT
-	// 		}
-	// 	)
-	// 	.then(buddies => {
-	// 		// res.json(buddies);
-	res.redirect(`/home/${req.session.passport.user.id}`);
-	// 	})
-	// 	.catch(err => {
-	// 		next(err);
-	// });
 };

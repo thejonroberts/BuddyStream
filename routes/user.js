@@ -3,9 +3,10 @@
 const { Router } = require('express');
 const router = Router();
 
-const { buddySearch } = require('../controllers/user-ctrl');
+const { buddySearch, buddyAdd } = require('../controllers/user-ctrl');
 
 router.post('/buddy-search', isLoggedIn, buddySearch);
+router.post('/buddy-add/:id', isLoggedIn, buddyAdd);
 
 module.exports = router;
 
