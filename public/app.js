@@ -2,6 +2,8 @@ const PORT = 8443;
 
 // set user id
 let uuid = createUUID();
+// hide navbar on this view
+document.querySelector('nav').classList.add('hide');
 // const video = document.querySelector('.player');
 const canvas = document.querySelector('.canvas');
 let ctx = canvas.getContext('2d');

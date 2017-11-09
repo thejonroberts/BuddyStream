@@ -8,7 +8,12 @@ const {
 	launchSession
 } = require('../controllers/session-ctrl');
 
-router.post('/session', saveAndLoadNewSession);
-router.get('/session/:id', launchSession);
+router.post('/session', isLoggedIn, saveAndLoadNewSession);
+router.get('/session/:id', isLoggedIn, launchSession);
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) return next();
+	res.redirect('/');
+}

@@ -10,8 +10,9 @@ block content
       .controls
         .controlButtons
           input(id="videoCallButton" class="btn btn-sm btn-primary" type='button', value='Connect')
-          input(id="endCallButton" class="btn btn-sm btn-secondary hide" type='button', value='Leave Session')
-          input(id="enterTheater" class="btn btn-sm btn-secondary" type='button', value='Theater Mode')
+          a(href='/home')
+            input(id="endCallButton" class="btn btn-sm btn-outline-danger" type='button', value='Leave Session')
+          input(id="enterTheater" class="btn btn-sm btn-outline-secondary" type='button', value='Theater Mode')
           input(id="rgbButton" class="btn btn-sm btn-outline-secondary hide" type='button', value='Adjust')
           input(id="exitTheater" class="btn btn-sm btn-outline-danger hide" type='button', value='Exit Theater')
         .rgb.hide
@@ -34,7 +35,7 @@ block content
             label(for='bmax') B Max:
             input(type='range', min='0', max='255', name='bmax', value='187')
       .webcamWrapper
-        video#remoteVideo.player(autoplay='')
+        video#remoteVideo.player(autoplay='' muted='')
   script(src='/public/lib/jquery/jquery.min.js')
   script(src='/public/lib/popper.js/popper.min.js')
   script(src='/public/lib/bootstrap/bootstrap.min.js')

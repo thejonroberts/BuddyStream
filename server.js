@@ -8,10 +8,10 @@ const app = express();
 const https = require('https');
 const WebSocket = require('ws');
 const methodOverride = require('method-override');
-// const passport = require('passport');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
-// const expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 
 // WEBSOCKET SERVER SETUP
 // ---------------------------
@@ -104,22 +104,22 @@ app.use(
 );
 
 //execute passport strategies file
-// require('./config/passport-strat.js');
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
+require('./config/passport-strat.js');
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 // This custom middleware adds the logged-in user's info to the locals variable,
 // so we can access it in the Pug templates
-// app.use((req, res, next) => {
-// 	res.locals.session = req.session;
-// 	// console.log('res.locals.session', res.locals.session);
-// 	next();
-// });
+app.use((req, res, next) => {
+	res.locals.session = req.session;
+	console.log('res.locals.session', res.locals.session);
+	next();
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 
 // validation - must be after bodyParser as it uses bodyParser to access parameters
-// app.use(expressValidator());
+app.use(expressValidator());
 
 // TODO Add a 404 error handler - pipe all server errors to from the routing middleware
 
