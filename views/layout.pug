@@ -6,11 +6,12 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/public/lib/bootstrap/bootstrap.min.css')
     link(href='/public/style.css', rel='stylesheet')
-  include partials/navbar.pug
-  body.container-fluid
-    block content
+  body
+    include partials/navbar.pug
+    .container-fluid
+      block content
 
-    //- script(src='/public/lib/jquery/jquery.min.js')
-    //- script(src='/public/lib/popper.js/popper.min.js')
-    //- script(src='/public/lib/bootstrap/bootstrap.min.js')
-    //- //- script(src='/public/app.js')
+      //- script(src='/public/lib/jquery/jquery.min.js')
+      //- script(src='/public/lib/popper.js/popper.min.js')
+      //- script(src='/public/lib/bootstrap/bootstrap.min.js')
+      //- //- script(src='/public/app.js')
