@@ -10,20 +10,16 @@ module.exports.login = (req, res, next) => {
 	// Note we're using different strategy, this time for logging in
 	passport.authenticate('local-signin', (err, user, msgObj) => {
 		// If login fails, the error is sent back by the passport strategy as { message: "some msg"}
-		console.log('error msg?', msgObj);
-
 		if (err) {
 			next(err);
-		} //or return next(err) once handler set up in app.js
+		} // TODO return next(err) once handler set up in server.js
 		if (!user) {
 			return res.render('login', msgObj);
 		}
-
 		req.logIn(user, err => {
 			if (err) {
 				return next(err);
 			}
-			// console.log('authenticated. Rerouting to welcome!', user);
 			res.redirect('/home');
 		});
 	})(req, res, next);
@@ -40,7 +36,6 @@ module.exports.register = (req, res, next) => {
 				next(err);
 			} //or return next(err)
 			if (!user) {
-				console.log('no user', user, msgObj);
 				return res.render('login', msgObj);
 			}
 			// Go ahead and login the new user once they are signed up
@@ -71,8 +66,11 @@ module.exports.welcome = (req, res, next) => {
 /**
  * Controller method to handle the logout click, destroy the session, and redirect users to the home page
  */
-module.exports.logout = (req, res) => {
+module.exports.logout = (req, res, next) => {
 	req.session.destroy(function(err) {
+		if (err) {
+			next(err);
+		}
 		res.redirect('/');
 	});
 };
