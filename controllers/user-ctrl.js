@@ -64,7 +64,7 @@ module.exports.buddyAdd = (req, res, next) => {
 						res.json(results);
 					});
 				});
-				res.redirect(`/home/${req.session.passport.user.id}`);
+				res.redirect(`/home`);
 			})
 			.catch(err => {
 				next(err);
