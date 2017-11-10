@@ -74,7 +74,7 @@ function paintToCanvas() {
 	// make canvas larger than video resolution, to avoid grainy scaling when drawing to canvas.
 	canvas.width = localWidth * 4;
 	canvas.height = localHeight * 4;
-	let marginBottom = canvas.height * 0.1;
+	let marginBottom = canvas.height * 0.05;
 	let marginLeft = canvas.width * 0.05;
 	// if remote video is active, grab dimensions
 	if (remoteVideo.src) {
