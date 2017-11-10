@@ -15,7 +15,8 @@ module.exports.buddySearch = (req, res, next) => {
 		}
 	})
 		.then(users => {
-			res.render('buddy-search-results', { users });
+			let currentUser = req.session.passport.user.id;
+			res.render('buddy-search-results', { users, currentUser });
 		})
 		.catch(err => next(err));
 };
@@ -43,7 +44,7 @@ module.exports.buddyAdd = (req, res, next) => {
 						res.json(results);
 					});
 				});
-				res.redirect(`/home/${req.session.passport.user.id}`);
+				res.redirect(`/home`);
 			})
 			.catch(err => {
 				next(err);
