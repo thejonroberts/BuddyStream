@@ -1,17 +1,39 @@
 extends layout.pug
 block content
-  h1 New BuddyStream:
-  form(action=`/session`, method="POST")
-    .form-group
-      label(for='buddySelect') Choose a buddy
-      select(class='custom-select' id="buddySelect" name="UserBuddyId")
-        each buddy in buddies
-          option(value=`${buddy.id}`) #{buddy.first} #{buddy.last}
-      label(for='streamSelect') Choose a movie
-      select(class='custom-select' id="streamSelect" name="MovieId")
-        each movie in movies
-          option(value=`${movie.id}`) #{movie.title}
-    button(type="submit" class="btn btn-primary") New BuddyStream
+  .container
+    .row
+      .col-12
+        h3 New BuddyStream:
+        form(action=`/session`, method="POST")
+          .form-group
+            label(for='buddySelect') Choose a buddy
+            select(class='custom-select form-control' id="buddySelect" name="UserBuddyId")
+              each buddy in buddies
+                option(value=`${buddy.id}`) #{buddy.first} #{buddy.last}
+          .form-group
+            label(for='streamSelect') Choose a movie
+            select(class='custom-select form-control' id="streamSelect" name="MovieId")
+              each movie in movies
+                option(value=`${movie.id}`) #{movie.title}
+          button(type="submit" class="btn btn-primary") New BuddyStream
+    .row
+      .col-12
+        h3 Add a buddy:
+        form(action=`/buddy-search`, method="POST")
+          .form-group
+            label(for='buddySearchFirst') First name:
+            input(id="buddySearchFirst" type="text" class="form-control" placeholder="Michelle" name="first")
+            label(for='buddySearchFirst') Last name:
+            input(id="buddySearchLast" type="text" class="form-control" placeholder="Jones" name="last")
+          button(type="submit" class='btn btn-outline-secondary') Find
+    .row
+      .col-12
+        h3 Add a Movie:
+        form(action=`/movie-search`, method="POST")
+          .form-group
+            label(for='movieTitle') First name:
+            input(id="movieTitle" type="text" class="form-control" placeholder="Joe vs. the Volcano" name="title")
+          button(type="submit" class='btn btn-outline-secondary') Search
   script(src='/public/lib/jquery/jquery.min.js')
   script(src='/public/lib/popper.js/popper.min.js')
   script(src='/public/lib/bootstrap/bootstrap.min.js')

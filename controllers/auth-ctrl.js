@@ -29,6 +29,7 @@ module.exports.login = (req, res, next) => {
  * Controller to handle new user registration
  */
 module.exports.register = (req, res, next) => {
+	console.log('registering?', req.body);
 	if (req.body.password === req.body.confirmation) {
 		// first argument is name of the passport strategy we created in passport-strat.js
 		passport.authenticate('local-signup', (err, user, msgObj) => {
