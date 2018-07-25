@@ -18,22 +18,22 @@ block content
         .rgb.hide
           .sliders
             label(for='rmin') R Min:
-            input(type='range', min='0', max='255', name='rmin', value='159')
+            input(type='range', min='0', max='255', name='rmin', value='26')
             br
             label(for='rmax') R Max:
-            input(type='range', min='0', max='255', name='rmax', value='240')
+            input(type='range', min='0', max='255', name='rmax', value='223')
           .sliders
             label(for='gmin') G Min:
-            input(type='range', min='0', max='255', name='gmin', value='136')
+            input(type='range', min='0', max='255', name='gmin', value='24')
             br
             label(for='gmax') G Max:
-            input(type='range', min='0', max='255', name='gmax', value='235')
+            input(type='range', min='0', max='255', name='gmax', value='255')
           .sliders
             label(for='bmin') B Min:
-            input(type='range', min='0', max='255', name='bmin', value='99')
+            input(type='range', min='0', max='255', name='bmin', value='83')
             br
             label(for='bmax') B Max:
-            input(type='range', min='0', max='255', name='bmax', value='187')
+            input(type='range', min='0', max='255', name='bmax', value='195')
       .webcamWrapper
         video#remoteVideo.player(autoplay='' muted='')
   script(src='/public/lib/jquery/jquery.min.js')

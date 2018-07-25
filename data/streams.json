@@ -11,17 +11,6 @@
 		"updatedAt": "2017-11-09T22:56:30.684Z"
 	},
 	{
-		"title": "IN THE ARMY NOW",
-		"SourceId": 1,
-		"sourceIdentifier": "https://youtu.be/7X5J7vC3ags",
-		"url": "https://www.youtube.com/watch?v=7X5J7vC3ags",
-		"embedHTML":
-			"<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7X5J7vC3ags\" frameborder=\"0\" allowfullscreen></iframe>",
-		"runningMinutes": 92,
-		"createdAt": "2017-10-29T05:11:35.646Z",
-		"updatedAt": "2017-11-09T22:56:30.684Z"
-	},
-	{
 		"title": "3 NINJAS FULL MOVIE 1992",
 		"SourceId": 1,
 		"sourceIdentifier": "tqfJtZSAcsw",
